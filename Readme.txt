@@ -3,7 +3,7 @@ Contributors: mahype
 Tags: pagerank,page rank,rank,siterank,site rank,pr,stats,statistics,seo,google
 Requires at least: 2.9.x
 Tested up to: 3.0.1
-Stable tag:  0.1
+Stable tag:  0.11
 
 View and monitor pagerank of your wordpress sites. 
 
@@ -35,8 +35,16 @@ That's it, have fun!
 1. **Settings**
 
 == Changelog ==
+<h4>0.11</h4>
+<ul>
+<li>Fixed error on creating database in UTF tables.</li>
+<li>Fixed error on activation of plugin caused by shorttag output.</li>
+<li>Thanks to <a href="http://wordpress.org/support/profile/pross">pross</a> and <a href="http://blogs.canalplan.org.uk/steve/">SteveAtty</a> for reporting!</li>
+</ul>
+
 <h4>0.1</h4>
 <ul>
 <li>First version of Pagerank tools.</li>
 </ul>
+
 

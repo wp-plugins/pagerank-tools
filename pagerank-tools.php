@@ -3,7 +3,7 @@
 Plugin Name: Pagerank tools
 Plugin URI: http://www.rheinschmiede.de
 Description: View and monitor pagerank of your wordpress sites. 
-Version: 0.1
+Version: 0.11
 Author: Sven Lehnert, Sven Wagener
 Author URI: http://www.rheinschmiede.de
 */
@@ -64,8 +64,7 @@ function prtools_install() {
 		url_type char(50) NOT NULL,
 		url VARCHAR(500) NOT NULL,
 		pr int(11) NOT NULL,
-		UNIQUE KEY id (id),
-		UNIQUE KEY url (url)
+		UNIQUE KEY id (id)
 		);";
 			
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');

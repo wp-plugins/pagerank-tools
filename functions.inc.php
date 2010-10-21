@@ -106,25 +106,23 @@ if(!function_exists('ajaxui')){
 		echo "<link href=\"http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css\" rel=\"stylesheet\" />";
 		echo "<script src= \"https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\" type=\"text/javascript\"></script>\n";
 		echo "<script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js\" type=\"text/javascript\"></script>\n";
-		?>
+		echo '
 <script type="text/javascript">
 	function openExpandyGroup( groupId )
 	{
-		var eOpen = document.getElementById(groupId + '_open');
-		eOpen.style.display = 'block';
-		var eClosed = document.getElementById(groupId + '_closed');
-		eClosed.style.display = 'none';
+		var eOpen = document.getElementById(groupId + \'_open\');
+		eOpen.style.display = \'block\';
+		var eClosed = document.getElementById(groupId + \'_closed\');
+		eClosed.style.display = \'none\';
 	}
 	function closeExpandyGroup( groupId )
 	{
-		var eOpen = document.getElementById(groupId + '_open');
-		eOpen.style.display = 'none';
-		var eClosed = document.getElementById(groupId + '_closed');
-		eClosed.style.display = 'block';
+		var eOpen = document.getElementById(groupId + \'_open\');
+		eOpen.style.display = \'none\';
+		var eClosed = document.getElementById(groupId + \'_closed\');
+		eClosed.style.display = \'block\';
 	}
-</script>    
-		<?
+</script>';
 	}
 }
-
 ?>
