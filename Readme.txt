@@ -1,9 +1,9 @@
 === Pagerank tools ===
-Contributors: mahype
+Contributors: mahype, svenl77
 Tags: pagerank,page rank,rank,siterank,site rank,pr,stats,statistics,seo,google
 Requires at least: 2.9.x
 Tested up to: 3.0.1
-Stable tag:  0.11
+Stable tag:  0.12
 
 View and monitor pagerank of your wordpress sites. 
 
@@ -35,6 +35,12 @@ That's it, have fun!
 1. **Settings**
 
 == Changelog ==
+<h4>0.12</h4>
+<ul>
+<li>Fixed problem with missing files.</li>
+<li>Thanks to <a href="http://blogs.canalplan.org.uk/steve/">SteveAtty</a> for reporting!</li>
+</ul>
+
 <h4>0.11</h4>
 <ul>
 <li>Fixed error on creating database in UTF tables.</li>
