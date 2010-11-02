@@ -9,7 +9,7 @@ if(!function_exists('ajaxui_js')){
 		if( ! isset( $_GET['page'] ) ) 
 			return;
 
-		if( $_GET['page'] == 'defaultblog' ) {
+		if( $_GET['page'] == 'page_pageranks' ) {
 			wp_enqueue_script('jquery');
 			wp_enqueue_script('jquery-ui-tabs');
 		}
@@ -18,7 +18,7 @@ if(!function_exists('ajaxui_js')){
 if(!function_exists('ajaxui_css')){
 	function ajaxui_css()
 	{
-		 if( $_GET['page'] == 'defaultblog' ) {
+		 if( $_GET['page'] == 'page_pageranks' ) {
 			 echo '<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css" rel="stylesheet" />';
 		 }	
 	}

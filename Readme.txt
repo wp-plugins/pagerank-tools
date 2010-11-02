@@ -3,7 +3,7 @@ Contributors: mahype, svenl77
 Tags: pagerank,page rank,rank,siterank,site rank,pr,stats,statistics,seo,google
 Requires at least: 2.9.x
 Tested up to: 3.0.1
-Stable tag:  0.1.3
+Stable tag:  0.1.4
 
 View and monitor pagerank of your wordpress sites. 
 
@@ -35,6 +35,11 @@ That's it, have fun!
 1. **Settings**
 
 == Changelog ==
+<h4>0.1.4</h4>
+<ul>
+<li>Fixed JQuery UI problems (part II)</li>
+</ul>
+
 <h4>0.1.3</h4>
 <ul>
 <li>Fixed JQuery UI problems</li>
