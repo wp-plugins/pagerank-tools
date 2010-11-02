@@ -1,6 +1,4 @@
 <?php function prtools_history(){ ?>
-	<?php prtools_css(); ?>
-    <?php ajaxui(); ?>
 <?php
 	update_url_table();	
 	global $wpdb;

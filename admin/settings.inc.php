@@ -1,6 +1,4 @@
 <?php function prtools_settings(){ ?>
-	<?php prtools_css(); ?>
-    <?php ajaxui(); ?>
 <!-- Head of entry //-->
 <div class="tab-head">
 	<h2><?php _e('Settings','prtools'); ?> <?php echo $_GET['url']; ?></h2>

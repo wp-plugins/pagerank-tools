@@ -1,7 +1,4 @@
 <?php function page_pageranks(){ ?>
-	<?php prtools_css(); ?>
-    <?php ajaxui(); ?>
-
     <!-- Title //-->
   	<h2><b>Pagerank tools</b></h2>
 
@@ -22,6 +19,10 @@
             <?php prtools_settings(); ?>
         </div>
     </div>
-    <script> $(function() { $("#config-tabs").tabs(); }); </script>
+    <script type="text/javascript">
+    	jQuery(document).ready(function($){
+        	$("#config-tabs").tabs();
+         });
+	</script>
 </div>
 <?php } ?>
