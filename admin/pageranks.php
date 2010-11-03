@@ -1,6 +1,11 @@
-<?php function page_pageranks(){ ?>
+<?php 
+
+function page_pageranks(){ 
+	global $prtools_extended, $prtools_name;
+
+?>
     <!-- Title //-->
-  	<h2><b>Pagerank tools</b></h2>
+  	<h2><b><?php echo $prtools_name; ?></b></h2>
 
 	<!-- Tabs //-->    
     <div id="config-tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
@@ -11,7 +16,7 @@
     
         <!-- Pagerank page //-->
         <div id="cap_pageranks" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
-            <?php prtools_history(); ?>
+            <?php if ( isset( $_GET['url'] ) ) { prtools_url(); } else { prtools_overview(); } ?>
         </div> 
         
         <!-- Settings page //-->

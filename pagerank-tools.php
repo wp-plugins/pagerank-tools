@@ -3,7 +3,7 @@
 Plugin Name: Pagerank tools
 Plugin URI: http://www.rheinschmiede.de
 Description: View and monitor pagerank of your wordpress sites. 
-Version: 0.1.4
+Version: 0.2
 Author: Sven Lehnert, Sven Wagener
 Author URI: http://www.rheinschmiede.de
 */
@@ -14,16 +14,23 @@ WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
 ***********************************************************************/
 
-include('lib/wp_url.inc.php');
-include('res/pagerank.php');
-include('ui/functions_layout.inc.php');
+$prtools_name=__('Pagerank tools','prtools');
 
-include('functions.inc.php');
+$prtools_plugin_path=dirname(__FILE__);
 
-include('admin/dashboard.php');
-include('admin/pageranks.php');
-include('admin/pageranks_listing.inc.php');
-include('admin/settings.inc.php');
+include($prtools_plugin_path.'/lib/io.inc.php');
+include($prtools_plugin_path.'/lib/wp_url.inc.php');
+include($prtools_plugin_path.'/res/pagerank.php');
+include($prtools_plugin_path.'/ui/functions_layout.inc.php');
+
+include($prtools_plugin_path.'/functions.inc.php');
+
+include($prtools_plugin_path.'/admin/pageranks.php');
+include($prtools_plugin_path.'/admin/pagerank_overview.php');
+include($prtools_plugin_path.'/admin/pagerank_url.php');
+
+include($prtools_plugin_path.'/admin/settings.inc.php');
+if(file_exists($prtools_plugin_path."/extended.inc.php")){include($prtools_plugin_path."/extended.inc.php");}
 
 register_activation_hook(__FILE__,'prtools_install');
 
