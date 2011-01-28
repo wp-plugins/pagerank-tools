@@ -22,7 +22,7 @@ Requests to google where made in moment of visitors request of a site. There is 
 
 PageRank is a trademark of Google, Inc.
 
-<a hre="https://themekraft.com/plugin/pagerank-tools-pro/">Get the professional Version of Pagerank Tools &gt;</a>
+<a href="http://themekraft.com/plugin/pagerank-tools-pro/">Get the professional Version of Pagerank Tools &gt;</a>
 
 == Installation ==
 1. Upload 'Pagerank tools' to the '/wp-content/plugins/' directory<br>
