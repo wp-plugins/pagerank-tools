@@ -79,9 +79,9 @@ function CheckHash($Hashnum)
 }
 
 function getpagerank($url) {
-	$fp = fsockopen("toolbarqueries.google.com", 80, $errno, $errstr, 30);
+	$fp = @fsockopen("toolbarqueries.google.com", 80, $errno, $errstr, 30);
 	if (!$fp) {
-	   echo "$errstr ($errno)<br />\n";
+	   echo "Fehler: $errstr ($errno)<br />\n";
 	}else{
 		$out = "GET /search?client=navclient-auto&ch=".CheckHash(HashURL($url))."&features=Rank&q=info:".$url."&num=100&filter=0 HTTP/1.1\r\n";
 		$out .= "Host: toolbarqueries.google.com\r\n";

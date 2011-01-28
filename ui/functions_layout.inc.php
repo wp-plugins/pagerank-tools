@@ -1,10 +1,12 @@
 <?php 
 // Templates
-function alert($msg){
-	echo "<div class=\"updated\"><p>".$msg."</p></div>";
+if(!function_exists('alert')){
+	function alert($msg){
+		echo "<div class=\"updated\"><p>".$msg."</p></div>";
+	}
 }
-if(!function_exists('ajaxui_js')){
-	function ajaxui_js(){
+if(!function_exists('pr_ajaxui_js')){
+	function pr_ajaxui_js(){
 		
 		if( ! isset( $_GET['page'] ) ) 
 			return;
@@ -15,12 +17,14 @@ if(!function_exists('ajaxui_js')){
 		}
 	}
 }
-if(!function_exists('ajaxui_css')){
-	function ajaxui_css()
+if(!function_exists('pr_ajaxui_css')){
+	function pr_ajaxui_css()
 	{
-		 if( $_GET['page'] == 'page_pageranks' ) {
-			 echo '<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css" rel="stylesheet" />';
-		 }	
+		if( isset( $_GET['page'] ) ){
+			 if( $_GET['page'] == 'page_pageranks' ) {
+				 echo '<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css" rel="stylesheet" />';
+			 }
+		}
 	}
 }
 function prtools_css(){

@@ -2,8 +2,8 @@
 Contributors: mahype, svenl77
 Tags: pagerank,page rank,rank,siterank,site rank,pr,stats,statistics,seo,google
 Requires at least: 2.9.x
-Tested up to: 3.0.1
-Stable tag:  0.2
+Tested up to: 3.0.4
+Stable tag:  1.0
 
 View and monitor pagerank of your wordpress sites. 
 
@@ -22,6 +22,8 @@ Requests to google where made in moment of visitors request of a site. There is 
 
 PageRank is a trademark of Google, Inc.
 
+<a hre="https://themekraft.com/plugin/pagerank-tools-pro/">Get the professional Version of Pagerank Tools &gt;</a>
+
 == Installation ==
 1. Upload 'Pagerank tools' to the '/wp-content/plugins/' directory<br>
 2. Activate 'Pagerank tools' on plugin page.
@@ -35,6 +37,13 @@ That's it, have fun!
 1. **Settings**
 
 == Changelog ==
+<h4>1.0</h4>
+<ul>
+<li>URLs can be deleted now</li>
+<li>Fixed bugs on update script</li>
+<li>Added lot of actions hooks</li>
+</ul>
+
 <h4>0.2</h4>
 <ul>
 <li>Added actions hooks</li>
