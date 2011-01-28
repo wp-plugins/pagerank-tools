@@ -8,15 +8,12 @@ Stable tag:  1.0
 View and monitor pagerank of your wordpress sites. 
 
 == Description ==
-This plugin requests the PageRank of your wordpress urls and stores the pageranks in the database.
-
-Requests to google where made in moment of visitors request of a site. There is no cron option, cause of better random requests. 
+You want to have the full overview of all pageranks of your Website? This plugin will get the pageranks for all urls of your wordpress website.
 
 <h4>Function overview</h4>
 
 <ul>
    <li>Overview of all urls with pageranks</li>
-   <li>Storing PageRank history of all sites</li>
    <li>Random requests of PageRanks</li>
 </ul>
 
