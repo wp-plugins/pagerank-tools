@@ -230,9 +230,10 @@ add_action( 'admin_init', 'pr_delete_url' , 10);
 
 if(!$prtools_extended){
 	function pr_get_pro_stats(){
+		global $prtools_plugin_path;
 		echo '<div class="statistics">
 				<div class="diagram" style="margin:0.83em 0;">
-					<a class="get_pro" href="#" title="Get professional version of pagerank tools"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/pagerank-tools/images/statistics_get_pro.jpg" alt="Pagerank overview" border="0"></a>
+					<a class="get_pro" href="#" title="Get professional version of pagerank tools"><img src="' . $prtools_plugin_path . '/images/statistics_get_pro.jpg" alt="Pagerank overview" border="0"></a>
 			</div>
 		</div>';
 	
@@ -240,12 +241,12 @@ if(!$prtools_extended){
 	add_action( 'prtools_main_head', 'pr_get_pro_stats' , 10, 0);
 	
 	function pr_get_pro_footer(){
-		echo '<a class="get_pro" href="#" title="Get professional version of pagerank tools"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/pagerank-tools/images/footer_get_pro.jpg" alt="Pagerank overview" border="0"></a>';
+		echo '<a class="get_pro" href="#" title="Get professional version of pagerank tools"><img src="' . $prtools_plugin_path . '/images/footer_get_pro.jpg" alt="Pagerank overview" border="0"></a>';
 	}
 	add_action( 'prtools_main_bottom', 'pr_get_pro_footer' , 10, 0);
 	
 	 function pr_get_pro_email(){
-		echo '<br /><br /><a class="get_pro" href="#" title="Get professional version of pagerank tools"><img src="' . get_bloginfo('wpurl') . '/wp-content/plugins/pagerank-tools/images/email_get_pro.jpg" /></a>';
+		echo '<br /><br /><a class="get_pro" href="#" title="Get professional version of pagerank tools"><img src="' . $prtools_plugin_path . '/images/email_get_pro.jpg" /></a>';
 		
 	}	
 	add_action( 'prtools_settings_page', 'pr_get_pro_email' , 10, 0); 

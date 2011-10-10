@@ -1,7 +1,7 @@
 <?php 
 
 function page_pageranks(){ 
-	global $prtools_extended, $prtools_name , $prtools_plugin_path;
+	global $prtools_extended, $prtools_name , $prtools_absolute_path;
 
 ?>
     <!-- Title //-->
@@ -26,7 +26,7 @@ function page_pageranks(){
         </div>
         <?php do_action('prtools_admin_pages'); ?>
     </div>
-    <script type="text/javascript" src="/<?php echo $prtools_plugin_path; ?>/scripts.js"></script>
+    <script type="text/javascript" src="/<?php echo $prtools_absolute_path; ?>/scripts.js"></script>
     <script type="text/javascript">
     	jQuery(document).ready(function($){
         	$("#prtooltabs").tabs();
@@ -38,5 +38,5 @@ function page_pageranks(){
   		});
 		<?php } ?>
 	</script>
-</div>
+
 <?php } ?>

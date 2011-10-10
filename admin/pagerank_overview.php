@@ -14,7 +14,7 @@ function prtools_overview(){
 		global $prtools_pr_table;
 		global $prtools_sum_urls;
 		global $prtools_sum_urls_query;
-		global $prtools_plugin_path;		
+		global $prtools_absolute_path;		
 		
 		$table_name = $wpdb->prefix . "prtools_url";
 		

@@ -2,8 +2,8 @@
 /*
 Plugin Name: Pagerank tools
 Plugin URI: http://www.rheinschmiede.de
-Description: View and monitor pagerank of your wordpress sites. 
-Version: 1.0
+Description: Monitor pageranks of your wordpress urls. 
+Version: 1.1
 Author: Sven Lehnert, Sven Wagener
 Author URI: http://www.rheinschmiede.de
 */
@@ -18,39 +18,43 @@ global $prtools_url_table;
 global $prtools_pr_table;
 global $prtools_version;
 global $prtools_debug;
+global $prtools_absolute_path;
+global $prtools_absolute_path_absolute;
 global $prtools_plugin_path;
-global $prtools_plugin_path_absolute;
 global $prtools_titles;
 global $prtools_extended;
 global $wpdb;
 
 $prtools_debug=false;
-$prtools_version="1.0";
+$prtools_version="1.1";
 
 $prtools_url_table=$wpdb->prefix."prtools_url";
 $prtools_pr_table=$wpdb->prefix."prtools_pr";
 
 $prtools_name=__('Pagerank tools','prtools');
 
-$prtools_plugin_path_absolute=dirname(__FILE__);
-$prtools_plugin_path=substr($prtools_plugin_path_absolute,strlen($_SERVER['DOCUMENT_ROOT']),strlen($prtools_plugin_path_absolute)-strlen($_SERVER['DOCUMENT_ROOT']));
+$prtools_absolute_path_absolute=dirname(__FILE__);
+$prtools_absolute_path=substr($prtools_absolute_path_absolute,strlen($_SERVER['DOCUMENT_ROOT']),strlen($prtools_absolute_path_absolute)-strlen($_SERVER['DOCUMENT_ROOT']));
 
-include($prtools_plugin_path_absolute.'/lib/io.inc.php');
-include($prtools_plugin_path_absolute.'/lib/html.inc.php');
-include($prtools_plugin_path_absolute.'/lib/wp_url.inc.php');
-include($prtools_plugin_path_absolute.'/res/pagerank.php');
-include($prtools_plugin_path_absolute.'/ui/functions_layout.inc.php');
+$prtools_plugin_path=substr(dirname(__FILE__),strlen($_SERVER['DOCUMENT_ROOT']),strlen(dirname(__FILE__))-strlen($_SERVER['DOCUMENT_ROOT']));
+if(substr($prtools_plugin_path,0,1)!="/"){$prtools_plugin_path="/".$prtools_plugin_path;}
+
+include($prtools_absolute_path_absolute.'/lib/io.inc.php');
+include($prtools_absolute_path_absolute.'/lib/html.inc.php');
+include($prtools_absolute_path_absolute.'/lib/wp_url.inc.php');
+include($prtools_absolute_path_absolute.'/res/pagerank.php');
+include($prtools_absolute_path_absolute.'/ui/functions_layout.inc.php');
 
 $prtools_extended=false;
-if(file_exists($prtools_plugin_path_absolute."/extended.php")){include($prtools_plugin_path_absolute."/extended.php");}
+if(file_exists($prtools_absolute_path_absolute."/extended.php")){include($prtools_absolute_path_absolute."/extended.php");}
 
-include($prtools_plugin_path_absolute.'/functions.inc.php');
-include($prtools_plugin_path_absolute.'/updates.php');
+include($prtools_absolute_path_absolute.'/functions.inc.php');
+include($prtools_absolute_path_absolute.'/updates.php');
 
-include($prtools_plugin_path_absolute.'/admin/main.php');
-include($prtools_plugin_path_absolute.'/admin/pagerank_overview.php');
-include($prtools_plugin_path_absolute.'/admin/settings.php');
-include($prtools_plugin_path_absolute.'/admin/get_pro.php');
+include($prtools_absolute_path_absolute.'/admin/main.php');
+include($prtools_absolute_path_absolute.'/admin/pagerank_overview.php');
+include($prtools_absolute_path_absolute.'/admin/settings.php');
+include($prtools_absolute_path_absolute.'/admin/get_pro.php');
 
 register_activation_hook(__FILE__,'prtools_install');
 

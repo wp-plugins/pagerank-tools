@@ -13,8 +13,21 @@ function cleanup_db_from_02(){
 	global $prtools_pr_table;
 	
 	// Updating table
-	$sql = "ALTER TABLE " . $prtools_url_table. " ADD diff_last_pr INT( 1 ) NOT NULL AFTER pr , ADD pr_entries INT( 11 ) NOT NULL AFTER diff_last_pr, ADD lastcheck INT( 11 ) NOT NULL AFTER lastupdate, ADD title TEXT NOT NULL AFTER url";
+	$sql = "ALTER TABLE " . $prtools_url_table. " ADD diff_last_pr INT( 1 ) NOT NULL AFTER pr";
 	$wpdb->query($sql);	
+	if($prtools_debug)echo $sql."<br />";
+	
+	$sql = "ALTER TABLE " . $prtools_url_table. " ADD pr_entries INT( 11 ) NOT NULL AFTER diff_last_pr";
+	$wpdb->query($sql);	
+	if($prtools_debug)echo $sql."<br />";
+		
+	$sql = "ALTER TABLE " . $prtools_url_table. " ADD lastcheck INT( 11 ) NOT NULL AFTER lastupdate";
+	$wpdb->query($sql);	
+	if($prtools_debug)echo $sql."<br />";
+		
+	$sql = "ALTER TABLE " . $prtools_url_table. " ADD title TEXT NOT NULL AFTER url";
+	$wpdb->query($sql);	
+	if($prtools_debug)echo $sql."<br />";	
 			
 	// Creating missing pagerank entries in pagerank table
 	$sql = "SELECT * FROM " . $prtools_url_table;

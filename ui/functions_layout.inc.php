@@ -28,6 +28,6 @@ if(!function_exists('pr_ajaxui_css')){
 	}
 }
 function prtools_css(){
-	echo "<link rel=\"stylesheet\" href=\"".get_option('siteurl')."/wp-content/plugins/pagerank-tools/ui/styles.css\" type=\"text/css\" media=\"screen\" />";
+	echo "<link rel=\"stylesheet\" href=\"" . $prtools_plugin_path . "/ui/styles.css\" type=\"text/css\" media=\"screen\" />";
 }
 ?>

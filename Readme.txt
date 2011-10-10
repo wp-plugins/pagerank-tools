@@ -3,23 +3,25 @@ Contributors: mahype, svenl77
 Tags: pagerank,page rank,rank,siterank,site rank,pr,stats,statistics,seo,google
 Requires at least: 2.9.x
 Tested up to: 3.0.4
-Stable tag:  1.0
+Stable tag:  1.1
 
-View and monitor pagerank of your wordpress sites. 
+Monitor pageranks of your wordpress sites.
 
 == Description ==
-You want to have the full overview of all pageranks of your Website? This plugin will get the pageranks for all urls of your wordpress website.
+This plugin gives you an overview about the pageranks of your whole urls. This is the professional version of the pagerank tools.
+
+Requests to google where made in moment of visitors request of a site. There is no cron option, cause of better random requests. 
 
 <h4>Function overview</h4>
 
 <ul>
-   <li>Overview of all urls with pageranks</li>
-   <li>Random requests of PageRanks</li>
+    <li>Graphical statistics of all pageranks</li>
+    <li>Graphical pagerank history of urls</li>
+    <li>Export pageranks to CVS (MS-Excel compatible)</li>
+    <li>Updtate email on pagerank change</li>
 </ul>
 
 PageRank is a trademark of Google, Inc.
-
-<a href="http://themekraft.com/plugin/pagerank-tools-pro/">Get the professional Version of Pagerank Tools &gt;</a>
 
 == Installation ==
 1. Upload 'Pagerank tools' to the '/wp-content/plugins/' directory<br>
@@ -31,47 +33,17 @@ That's it, have fun!
 == Screenshots ==
 
 1. **URL overview**
-1. **Settings**
+2. **Detailed URL view**
 
 == Changelog ==
+<h4>1.1</h4>
+<ul>
+<li>Turned all pro frunctions to free</li>
+</ul>
+
 <h4>1.0</h4>
 <ul>
-<li>URLs can be deleted now</li>
-<li>Fixed bugs on update script</li>
-<li>Added lot of actions hooks</li>
-</ul>
-
-<h4>0.2</h4>
-<ul>
-<li>Added actions hooks</li>
-</ul>
-
-<h4>0.1.4</h4>
-<ul>
-<li>Fixed JQuery UI problems (part II)</li>
-</ul>
-
-<h4>0.1.3</h4>
-<ul>
-<li>Fixed JQuery UI problems</li>
-</ul>
-
-<h4>0.12</h4>
-<ul>
-<li>Fixed problem with missing files.</li>
-<li>Thanks to <a href="http://blogs.canalplan.org.uk/steve/">SteveAtty</a> for reporting!</li>
-</ul>
-
-<h4>0.11</h4>
-<ul>
-<li>Fixed error on creating database in UTF tables.</li>
-<li>Fixed error on activation of plugin caused by shorttag output.</li>
-<li>Thanks to <a href="http://wordpress.org/support/profile/pross">pross</a> and <a href="http://blogs.canalplan.org.uk/steve/">SteveAtty</a> for reporting!</li>
-</ul>
-
-<h4>0.1</h4>
-<ul>
-<li>First version of Pagerank tools.</li>
+<li>First version of Pagerank tools professional</li>
 </ul>
 
 
