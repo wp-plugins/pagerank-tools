@@ -4,10 +4,10 @@ function prtools_overview(){
 	global $prtools_extended;
 
 				
-	update_url_table(false,false);
-	update_pr_tools();
+	update_url_table();
+	// update_pr_tools();
 	
-	if ( isset( $_GET['url'] ) && $prtools_extended ) { prtools_url(); } else { 	
+	if ( isset( $_GET['url_id'] ) && $prtools_extended ) { prtools_url(); } else { 	
 		
 		global $wpdb;
 		global $prtools_url_table;
@@ -16,19 +16,16 @@ function prtools_overview(){
 		global $prtools_sum_urls_query;
 		global $prtools_absolute_path;		
 		
-		$table_name = $wpdb->prefix . "prtools_url";
-		
-		$sql = "SELECT count(*) AS count FROM " . $table_name;
+		$sql = "SELECT count(*) AS count FROM " . $prtools_url_table . " WHERE active='1'";
 		$prtools_stat = $wpdb->get_row( $sql );
+		
 		$prtools_sum_urls = $prtools_stat->count;
 		
-		$sql = "SELECT * FROM " . $table_name . " ORDER by pr DESC";
+		$sql = "SELECT * FROM " . $prtools_url_table . " WHERE active='1' ORDER by pr DESC";
 		$sql = apply_filters( 'prtools_main_sql', $sql );
 		$prtools_rows = $wpdb->get_results( $sql );
 		
 		$prtools_sum_urls_query=count($prtools_rows);
-		
-
 				
 ?>
 
@@ -85,7 +82,7 @@ function prtools_overview(){
 								<a href="#" border="0" title="Delete" onclick="question_redirect(\'' . __('Do you really want to delete','prtools') . ' ' . $row->url . ' and all data from Pagerank tools?\', \'' . str_replace( '%7E', '~', $_SERVER['REQUEST_URI']) . '&delete_url=' . $row->url . '\' );">[delete]</a>
 							</td>';
 			
-			$prtools_row.= '<td scope="row">' . $row->url_type . '</td>';
+			$prtools_row.= '<td scope="row">' . $row->object_type . '</td>';
 			$prtools_row.= '<td scope="row">' . $row->date . '</td>';
 			$prtools_row.= '</tr>';
 			

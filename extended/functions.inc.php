@@ -55,7 +55,6 @@ Automated mail by Pagerank tools prefessional.';
 add_action( 'prtools_update_pr', 'prtools_extend_update_pr' , 10, 3);
 
 function fetch_titles(){
-	if($prtools_debug)echo "Drin!";
 	global $wpdb;
 	global $prtools_debug;
 	global $prtools_url_table;
@@ -67,25 +66,17 @@ function fetch_titles(){
 	// Getting sites which are updatable by settings
 	$sql="SELECT * FROM ".$prtools_url_table." WHERE title='' ORDER BY pr DESC LIMIT 0,".$num;
 	
-	if($prtools_debug)echo "SQL fetching titles: ".$sql."<br />\n";
-	
 	$url_rows=$wpdb->get_results($sql);
+	echo '<pre>';
+	print_r( $url_rows );
+	echo '</pre>';
 	
 	// echo rs_get_title($url_row->url);
 	
 	foreach($url_rows as $url_row){
-		if($prtools_debug){
-			$time_start=time();
-			echo "<br>GETTING TITLE<br>URL: <a href=\"".$url_row->url."\" target=\"_blank\">".$url_row->url."</a><br />\n";
-		}
 		
 		$title=rs_get_title($url_row->url);
 		
-		if($prtools_debug){
-			echo "Title: ".$title."<br>";
-			$time_end=time();
-			echo "Request time: ".($time_end-$time_start)."<br />\n";
-		}
 		if($title!=""){
 			$wpdb->update($prtools_url_table, array('title'=>$title) , array('url'=>$url_row->url));
 		}
@@ -154,18 +145,18 @@ function prtools_html_pr($pr){
 		$html="-";
 	}
 		
-	if($pr==-1)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-na.gif" />';
-	if($pr==0)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-0.gif" />';
-	if($pr==1)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-1.gif" />';
-	if($pr==2)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-2.gif" />';
-	if($pr==3)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-3.gif" />';
-	if($pr==4)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-4.gif" />';
-	if($pr==5)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-5.gif" />';
-	if($pr==6)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-6.gif" />';
-	if($pr==7)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-7.gif" />';
-	if($pr==8)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-8.gif" />';
-	if($pr==9)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-9.gif" />';
-	if($pr==10)$html='<img src="/' . $prtools_absolute_path . '/extended/images/pr-10.gif" />';
+	if($pr==-1)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-na.gif" />';
+	if($pr==0)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-0.gif" />';
+	if($pr==1)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-1.gif" />';
+	if($pr==2)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-2.gif" />';
+	if($pr==3)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-3.gif" />';
+	if($pr==4)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-4.gif" />';
+	if($pr==5)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-5.gif" />';
+	if($pr==6)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-6.gif" />';
+	if($pr==7)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-7.gif" />';
+	if($pr==8)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-8.gif" />';
+	if($pr==9)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-9.gif" />';
+	if($pr==10)$html='<img src="' . PRTOOLS_URLPATH . '/extended/images/pr-10.gif" />';
 	
 	return $html;
 }

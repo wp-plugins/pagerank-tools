@@ -6,7 +6,7 @@ function prtools_info_tab(){
 add_action( 'prtools_admin_tabs', 'prtools_info_tab' , 10, 0); 
 
 function prtools_info_page(){
-	echo '<div id="cap_info" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">';
+	echo '<div id="cap_info">';
 	echo '<h2>' . __('Information', 'prtools') . '</h2>';
 	
 	echo '<p>' . __('This site just informs you if your webspace is set up correctly. If you want to change something, please inform your webhoster.', 'prtools') . '</p>';
@@ -54,12 +54,12 @@ function prtools_info_page(){
 	echo '<tr>';	
 	echo '<td>output_buffering</td>';
 	
-	if(ini_get('output_buffering')==1){
-		echo '<td>1</td>';
+	if(ini_get('output_buffering')==0){
+		echo '<td>0</td>';
 		echo '<td>OK!</td>';
 	}else{
 		echo '<td>' . ini_get('output_buffering') . '</td>';
-		echo '<td><b>Warning:</b> Value should to be 1, because performance of your site will be better if page requests where made.</td>';
+		echo '<td><b>Warning:</b> Value should to be 0, because performance of your site will be better if page requests where made.</td>';
 	}
 	echo '</tr>';	
 	

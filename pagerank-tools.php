@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: Pagerank tools
+Plugin Name: Pagerank Tools
 Plugin URI: http://themekraft.com/plugin/pagerank-tools/
-Description: Monitor pageranks of your wordpress urls. 
-Version: 1.1.1
-Author: Sven Lehnert, Sven Wagener
-Author URI: http://themekraft.com
+Description: Monitor the Google Pagerank of your Blog URls.
+Version: 1.1.2
+Author: Sven Wagener
+Author URI: http://rheinschmiede.de
 */
 
 /**********************************************************************
@@ -26,12 +26,15 @@ global $prtools_extended;
 global $wpdb;
 
 $prtools_debug=false;
-$prtools_version="1.1";
+$prtools_version="1.1.2";
 
 $prtools_url_table=$wpdb->prefix."prtools_url";
 $prtools_pr_table=$wpdb->prefix."prtools_pr";
 
 $prtools_name=__('Pagerank tools','prtools');
+
+define( 'PRTOOLS_FOLDER',  pr_tools_get_folder() );
+define( 'PRTOOLS_URLPATH', pr_tools_get_url_path() );
 
 $prtools_absolute_path_absolute=dirname(__FILE__);
 $prtools_absolute_path=substr($prtools_absolute_path_absolute,strlen($_SERVER['DOCUMENT_ROOT']),strlen($prtools_absolute_path_absolute)-strlen($_SERVER['DOCUMENT_ROOT']));
@@ -63,7 +66,23 @@ add_action('admin_head','prtools_css');
 add_action('init','pr_ajaxui_js');
 
 add_action('admin_menu','add_prtools');
-add_action('wp_footer','fetch_pr');
+
+if( !is_admin() )
+	add_action('wp_footer','fetch_pr');
+
+/**
+ * Updating Plugin
+ */
+function update_pr_tools(){
+	global $prtools_version;
+	
+	$installed_version = get_option( 'pr_tools_version' );
+	
+	if( $installed_version == '' || version_compare( '1.1.2', $installed_version, '>' ) ){
+		update_pr_tools_to_1_1_2();
+	}
+}
+add_action( 'wp_loaded', 'update_pr_tools' );
 
 /**
  * PR fetcher menue
@@ -89,6 +108,8 @@ function prtools_install() {
 	
 		$sql = "CREATE TABLE ".$prtools_url_table." (
 		ID int(11) NOT NULL AUTO_INCREMENT,
+		object_id INT( 11 ) NOT NULL,
+		object_type CHAR( 50 ) NOT NULL,
 		entrydate int(11) DEFAULT '0' NOT NULL,
 		lastupdate int(11) DEFAULT '0' NOT NULL,
 		lastcheck int(11) NOT NULL,
@@ -98,6 +119,8 @@ function prtools_install() {
 		pr int(11) NOT NULL,
 		diff_last_pr int(1) NOT NULL,
 		pr_entries int(11) NOT NULL,
+		queue INT( 1 ) NOT NULL,
+		active INT( 1 ) NOT NULL,
 		UNIQUE KEY id (id)
 		);";
 			
@@ -109,6 +132,7 @@ function prtools_install() {
 	
 		$sql = "CREATE TABLE ".$prtools_pr_table." (
 		ID int(11) NOT NULL AUTO_INCREMENT,
+		url_id INT( 11 ) NOT NULL,
 		entrydate int(11) DEFAULT '0' NOT NULL,
 		url VARCHAR(500) NOT NULL,
 		pr int(11) NOT NULL,
@@ -135,37 +159,14 @@ function prtools_install() {
 		update_option('pagerank_tools_settings',$prtools_settings);	
 	}
 }
-
-function update_pr_tools(){
-	global $prtools_debug;
-	global $prtools_version;	
-	
-	$prtools_settings=get_option('pagerank_tools_settings');
-	// unset($prtools_settings['running_number']);
-	if($prtools_debug) print_r_html($prtools_settings);
-	
-	// Reorganizing tables // 08. December 2010 // Version 0.2 to 0.2.1
-
-	// Adding entries for requests urls without pr from google,
-	// adding first creation log,
-	// get difference between last PR and new PR in table  
-	// and getting num of entries in table
-	if($prtools_settings['running_number']==""){
-		cleanup_db_from_02();
-	}
-	
-	if($prtools_settings['running_number']<3){
-		alter_table_from_02();
-		update_url_table(true,true);
-		$prtools_settings['fetch_titles_num']=2;
-	}
-	// Saving which updates have been made
-	$prtools_settings['version']=$prtools_version;	
-	$prtools_settings['running_number']=3;
-	
-	// if($prtools_debug)unset($prtools_settings['running_number']);
-				
-	update_option('pagerank_tools_settings',$prtools_settings);	
+function pr_tools_get_url_path(){
+	$sub_path = substr( PRTOOLS_FOLDER, strlen( ABSPATH ), ( strlen( PRTOOLS_FOLDER ) ) );
+	$script_url = get_bloginfo( 'wpurl' ) . '/' . $sub_path;
+	return $script_url;
 }
-
-?>
+	
+function pr_tools_get_folder(){
+	$sub_folder = substr( dirname(__FILE__), strlen( ABSPATH ), ( strlen( dirname(__FILE__) ) - strlen( ABSPATH ) ) );
+	$script_folder = ABSPATH . $sub_folder;
+	return $script_folder;
+}

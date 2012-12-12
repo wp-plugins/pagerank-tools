@@ -10,7 +10,7 @@ include("res/pChart/pChart/pData.class");
 include("res/pChart/pChart/pChart.class");
 
 $table_name = $wpdb->prefix . "prtools_url";
-$prtools_rows = $wpdb->get_results( "SELECT * FROM ".$table_name." ORDER by pr DESC" );
+$prtools_rows = $wpdb->get_results( "SELECT * FROM ".$table_name." WHERE active=1 ORDER by pr DESC" );
 
 $data[-2]=0;
 $data[-1]=0;

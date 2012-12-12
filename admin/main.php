@@ -8,7 +8,7 @@ function page_pageranks(){
   	<h2><b><?php echo $prtools_name; ?></b></h2>
 
 	<!-- Tabs //-->    
-    <div id="prtooltabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+    <div id="prtooltabs">
         <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
             <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#cap_pageranks"><?php _e('Pageranks','prtools'); ?></a></li>
             <li class="ui-state-default ui-corner-top"><a href="#cap_settings"><?php _e ('Settings', 'prtools') ?></a></li>
@@ -16,12 +16,12 @@ function page_pageranks(){
         </ul>
     
         <!-- Pagerank page //-->
-        <div id="cap_pageranks" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+        <div id="cap_pageranks">
             <?php prtools_overview(); ?>
         </div> 
         
         <!-- Settings page //-->
-        <div id="cap_settings" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+        <div id="cap_settings">
             <?php prtools_settings(); ?>
         </div>
         <?php do_action('prtools_admin_pages'); ?>

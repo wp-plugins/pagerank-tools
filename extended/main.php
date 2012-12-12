@@ -42,10 +42,12 @@ function prtools_pro_main_sql(){
 	$sql_col_change='IF(pr=-2,0,IF(pr=-1,IF(pr-diff_last_pr=-2,0,diff_last_pr+1),IF(pr>-1,IF(pr-diff_last_pr<0,pr,diff_last_pr),0))) AS prchange';
 	
 	// SQL Statement
-	$sql = 'SELECT ID, entrydate, lastupdate, lastcheck, url_type, url, title, pr, diff_last_pr, pr_entries, queue, ' .$sql_col_nextcheck . ',  ' .$sql_col_change . ' FROM '.$table_name;
+	$sql = 'SELECT ID, entrydate, lastupdate, lastcheck, object_type, url, title, pr, diff_last_pr, pr_entries, queue, ' .$sql_col_nextcheck . ',  ' .$sql_col_change . ' FROM '.$table_name;
 	
 	if($pagerank!=""){
-		$sql.=' WHERE pr="' . $pagerank . '"';
+		$sql.=' WHERE pr="' . $pagerank . '" AND active="1"';
+	}else{
+		$sql.=' WHERE active="1"';
 	}
 	
 
@@ -279,10 +281,10 @@ function prtools_main_tablehead($tablehead){
 		$title_direction="DESC";
 	}
 	
-	if($order=="url_type" && $direction=="DESC"){
-		$url_type_direction="ASC";
+	if($order=="object_type" && $direction=="DESC"){
+		$object_type_direction="ASC";
 	}else{
-		$url_type_direction="DESC";
+		$object_type_direction="DESC";
 	}
 	
 	if($order=="lastupdate" && $direction=="DESC"){
@@ -314,7 +316,7 @@ function prtools_main_tablehead($tablehead){
 		$tablehead.= '<th scope="col"><a href="' . $page. '&order=url&direction=' . $url_direction . '">' . __('URL','prtools') . '</a></th><th scope="col">&nbsp;</th>';
 	}
 
-	$tablehead.= '<th scope="col"><a href="' . $page. '&order=url_type&direction=' . $url_type_direction . '&start=' . $start . '&limit=' . $limit . '&pagerank=' . $pagerank . '">' . __('Type','prtools') . '</a></th>';
+	$tablehead.= '<th scope="col"><a href="' . $page. '&order=object_type&direction=' . $object_type_direction . '&start=' . $start . '&limit=' . $limit . '&pagerank=' . $pagerank . '">' . __('Type','prtools') . '</a></th>';
 	
 	
 	$tablehead.= '<th scope="col"><a href="' . $page. '&order=lastupdate&direction=' . $lastupdate_direction . '&start=' . $start . '&limit=' . $limit . '&pagerank=' . $pagerank . '">' . __('Last change','prtools') . '</a></th>';
@@ -368,21 +370,25 @@ function prtools_main_tablerow($tablerow,$row){
 	if($row->queue==1){
 		$next_update="Immediately";
 	}else{
+		
 		if($row->pr==-2 || $row->pr==-1){
 			$next_update=$row->lastcheck+($prtools_settings['fetch_url_interval_new']*24*60*60);
 		}else{
 			$next_update=$row->lastcheck+($prtools_settings['fetch_url_interval']*24*60*60);			
 		}
+		if( $next_update < $prtools_settings['last_google_request']+( $prtools_settings['fetch_interval']*60) ){
+			$next_update = $prtools_settings['last_google_request']+( $prtools_settings['fetch_interval']*60);
+		}
 		if($row->lastcheck!=0){
-			$next_update=date("d.m.Y",$next_update);		
+			$next_update = date_i18n( get_option('date_format'), $next_update ) .  '<br />(' .date_i18n( get_option('time_format'), $next_update ) . ')';		
 		}else{
 			$next_update="Immediately";
 		} 
 	}
 
 	// Calculating last check
-	if($row->lastcheck!=0){
-		$lastcheck=date("d.m.Y",$row->lastcheck);
+	if($row->lastupdate!=0){
+		$lastcheck= date_i18n( get_option('date_format'), $row->lastcheck) .  '<br />(' .date_i18n( get_option('time_format'), $row->lastcheck ) . ')';
 	}else{
 		$lastcheck="-";
 	}
@@ -402,7 +408,7 @@ function prtools_main_tablerow($tablerow,$row){
 	}
 	
 	$tablerow.= '<td scope="row" width="75">
-					<a href="' . str_replace( '%7E', '~', $_SERVER['REQUEST_URI']) . '&url=' . $row->url . '" title="Details">
+					<a href="' . str_replace( '%7E', '~', $_SERVER['REQUEST_URI']) . '&url_id=' . $row->ID . '" title="Details">
 						<img src="' . $prtools_plugin_path . '/extended/images/icon-info.png" border="0" alt="Details" />
 				    </a>
 					<a href="' . $row->url . '" target="_blank" border="0" title="Visit">
@@ -413,8 +419,8 @@ function prtools_main_tablerow($tablerow,$row){
 					</a>
 				 </td>';
 				 
-	$tablerow.= '<td scope="row">' . $row->url_type . '</td>';
-	$tablerow.= '<td scope="row">' . $row->date . '</td>';
+	$tablerow.= '<td scope="row">' . $row->object_type . '</td>';
+	$tablerow.= '<td scope="row">' . date_i18n( get_option('date_format'), strtotime( $row->date ) ) . '</td>';
 	
 	$tablerow.= '<td scope="row">' . $lastcheck . '</td>';
 	

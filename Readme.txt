@@ -3,7 +3,7 @@ Contributors: mahype, svenl77
 Tags: pagerank,page rank,rank,siterank,site rank,pr,stats,statistics,seo,google
 Requires at least: 2.9.x
 Tested up to: 3.0.4
-Stable tag:  1.1.1
+Stable tag:  1.1.2
 
 Monitor pageranks of your wordpress sites.
 
@@ -36,6 +36,11 @@ That's it, have fun!
 2. **Detailed URL view**
 
 == Changelog ==
+<h4>1.1.2</h4>
+<ul>
+<li>Different Bugs</li>
+</ul>
+
 <h4>1.1.1</h4>
 <ul>
 <li>Check if an url already exists or not to prevent checking non existant URLs to google</li>
@@ -50,5 +55,3 @@ That's it, have fun!
 <ul>
 <li>First version of Pagerank tools professional</li>
 </ul>
-
-

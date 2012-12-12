@@ -160,4 +160,50 @@ function alter_table_from_02(){
 	$wpdb->query($sql);
 }
 
+function update_pr_tools_to_1_1_2(){
+	global $wpdb;
+	global $prtools_url_table;
+	global $prtools_pr_table;
+	
+	/**
+	 * Updating tables to 1.1.2
+	 */
+	if( $wpdb->get_var( "SHOW TABLES LIKE '" . $prtools_url_table . "'" ) == $prtools_url_table ) {
+		$sql = "ALTER TABLE " . $prtools_url_table . " ADD object_id INT( 11 ) NOT NULL AFTER ID, ADD object_type CHAR( 50 ) NOT NULL AFTER object_id, ADD active INT( 1 ) NOT NULL AFTER queue";
+		$wpdb->query( $sql );
+	}
+	
+	if( $wpdb->get_var( "SHOW TABLES LIKE '" . $prtools_pr_table . "'" ) == $prtools_pr_table ) {
+		$sql = "ALTER TABLE " . $prtools_pr_table . " ADD url_id INT( 11 ) NOT NULL AFTER ID";
+		$wpdb->query( $sql );
+	}
+	
+	/**
+	 * Updating pr Table
+	 */
+	$pr_rows = $wpdb->get_results( "SELECT ID, url FROM " . $prtools_pr_table );
+	
+	foreach( $pr_rows AS $pr_row ){
+		$url_row = $wpdb->get_row( "SELECT ID, url FROM " . $prtools_url_table . " WHERE url ='" . $pr_row->url . "'" );
+		$sql = 'UPDATE ' . $prtools_pr_table . ' SET url_id="' . $url_row->ID . '" WHERE ID="' . $pr_row->ID . '"';
+		$wpdb->query( $sql );
+	}
+	
+	/**
+	 * Updating url Table
+	 */
+	 
+	$url_rows = $wpdb->get_results( "SELECT ID, url FROM " . $prtools_url_table );
+	$wp_urls = wp_get_urls();
+	
+	foreach( $url_rows AS $url_row ){
+		if( in_array( $url_row->url, $wp_urls ) ){
+			$sql = 'UPDATE ' . $prtools_url_table . ' SET active="1" WHERE ID="' . $url_row->ID . '"';
+			$wpdb->query( $sql );
+		}
+	}
+	
+	update_option( 'pr_tools_version', '1.1.2' );
+}
+
 ?>

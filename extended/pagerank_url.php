@@ -6,7 +6,7 @@ function prtools_url(){
 	global $prtools_pr_table;
 	global $prtools_plugin_path;	
 	
-	$prtools_rows = $wpdb->get_results( "SELECT * FROM ".$prtools_pr_table." WHERE url='". $_GET['url']."' ORDER BY ".$prtools_pr_table.".entrydate DESC");
+	$prtools_rows = $wpdb->get_results( "SELECT * FROM ".$prtools_pr_table." WHERE url_id='". $_GET['url_id']."' ORDER BY ".$prtools_pr_table.".entrydate DESC");
 
 ?>
 
@@ -24,9 +24,8 @@ function prtools_url(){
 
 <div class="statistics">
 	<div class="diagram" style="width:700px;margin:0.83em 0;">
-    <img src="<?php echo $prtools_plugin_path; ?>/extended/stat_graph_url.php?url=<?php echo $_GET['url']; ?>" alt="Pagerank overview" width="700" height="230" />
+    <img src="<?php echo $prtools_plugin_path; ?>/extended/stat_graph_url.php?url_id=<?php echo $_GET['url_id']; ?>" alt="Pagerank overview" width="700" height="230" />
 	</div>
-    <p><a href="<?php echo $_GET['url']; ?>" target="_blank"><?php echo $_GET['url']; ?></a></p>
 </div>
 
 <!-- Listing pagerank  history of site //-->

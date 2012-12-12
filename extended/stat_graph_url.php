@@ -2,7 +2,7 @@
 
 $wordpress_path="../../../..";
 
-$pr_url=$_GET['url'];
+$pr_url_id = $_GET['url_id'];
 
 require( $wordpress_path . '/wp-load.php' );
 
@@ -12,28 +12,22 @@ include("res/pChart/pChart/pChart.class");
 
 $table_name = $wpdb->prefix . "prtools_pr";
 
-$sql = "SELECT * FROM ".$table_name." WHERE url='" . $pr_url . "' ORDER by entrydate";
-
-// echo $sql."<br />";
+$sql = "SELECT * FROM ".$table_name." WHERE url_id='" . $pr_url_id . "' ORDER by entrydate";
 
 $prtools_rows = $wpdb->get_results( $sql );
 
 $i=count($prtools_rows);
-
-// echo "<pre>";
-// print_r($prtools_rows);
-// echo "</pre>";
 
 $pr_serie=array();
 $date_serie=array();
 
 foreach ( $prtools_rows as $row ) {
 	$pr=$row->pr;
-	//if($row->pr!=-2){
+	if($row->pr!=-2){
 		if($row->pr==-1 || $row->pr==-2)$pr=0;
 		array_push($pr_serie,$pr);
 		array_push($date_serie,date("d.m.y",$row->entrydate));	
-	//}
+	}
 }
 // echo "<pre>";
 // print_r($pr_serie);
@@ -76,7 +70,7 @@ $Test->setFontProperties("res/pChart/Fonts/tahoma.ttf",8);
 
 // $Test->drawLegend(45,35,$DataSet->GetDataDescription(),255,255,255);  
 $Test->setFontProperties("res/pChart/Fonts/tahoma.ttf",10);  
-$Test->drawTitle(60,22,"Pagerank statistics of ".$pr_url,50,50,50,585);  
+$Test->drawTitle(60,22,"Pagerank statistics",50,50,50,585);  
 $Test->Stroke();  
 
 ?>
