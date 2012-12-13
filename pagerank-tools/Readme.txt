@@ -1,5 +1,5 @@
 === Pagerank tools ===
-Contributors: mahype, svenl77
+Contributors: mahype
 Tags: pagerank,page rank,rank,siterank,site rank,pr,stats,statistics,seo,google
 Requires at least: 2.9.x
 Tested up to: 3.0.4
