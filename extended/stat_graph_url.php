@@ -7,8 +7,8 @@ $pr_url_id = $_GET['url_id'];
 require( $wordpress_path . '/wp-load.php' );
 
 // Standard inclusions     
-include("res/pChart/pChart/pData.class"); 
-include("res/pChart/pChart/pChart.class");
+include("res/pChart/pChart/pData.php"); 
+include("res/pChart/pChart/pChart.php");
 
 $table_name = $wpdb->prefix . "prtools_pr";
 

@@ -6,8 +6,8 @@ $wordpress_path="../../../..";
 require( $wordpress_path . '/wp-load.php' );
 
 // Standard inclusions     
-include("res/pChart/pChart/pData.class"); 
-include("res/pChart/pChart/pChart.class");
+include("res/pChart/pChart/pData.php"); 
+include("res/pChart/pChart/pChart.php");
 
 $table_name = $wpdb->prefix . "prtools_url";
 $prtools_rows = $wpdb->get_results( "SELECT * FROM ".$table_name." WHERE active=1 ORDER by pr DESC" );

@@ -3,7 +3,7 @@
 Plugin Name: Pagerank Tools
 Plugin URI: http://themekraft.com/plugin/pagerank-tools/
 Description: Monitor the Google Pagerank of your Blog URls.
-Version: 1.1.2
+Version: 1.1.3
 Author: Sven Wagener
 Author URI: http://rheinschmiede.de
 */
