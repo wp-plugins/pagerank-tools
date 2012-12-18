@@ -67,9 +67,6 @@ function fetch_titles(){
 	$sql="SELECT * FROM ".$prtools_url_table." WHERE title='' ORDER BY pr DESC LIMIT 0,".$num;
 	
 	$url_rows=$wpdb->get_results($sql);
-	echo '<pre>';
-	print_r( $url_rows );
-	echo '</pre>';
 	
 	// echo rs_get_title($url_row->url);
 	

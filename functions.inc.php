@@ -33,8 +33,6 @@ function fetch_pr(){
 			
 	$url_rows = $wpdb->get_results( $sql );
 	
-	// mail( 'sven.wagener@rheinschmiede.de', 'PR', print_r( $url_rows, TRUE) . $_SERVER[ 'REQUEST_URI' ] );
-	
 	/*
 	* Checking pageranks
 	***************************************/

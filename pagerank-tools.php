@@ -3,7 +3,7 @@
 Plugin Name: Pagerank Tools
 Plugin URI: http://wordpress.org/extend/plugins/pagerank-tools/
 Description: Monitor the Google Pagerank of your Blog URls.
-Version: 1.1.4
+Version: 1.1.5
 Author: Sven Wagener
 Author URI: http://rheinschmiede.de
 */
@@ -26,7 +26,7 @@ global $prtools_extended;
 global $wpdb;
 
 $prtools_debug=false;
-$prtools_version="1.1.4";
+$prtools_version="1.1.5";
 
 $prtools_url_table=$wpdb->prefix."prtools_url";
 $prtools_pr_table=$wpdb->prefix."prtools_pr";
